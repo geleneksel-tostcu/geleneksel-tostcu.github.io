@@ -1,0 +1,499 @@
+
+<!DOCTYPE html> 
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geleneksel Tostçu | Sirkeci'nin Meşhur Lezzeti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+
+        :root {
+            --ana-renk: #e67e22;
+            --arka-plan: #fdfaf6;
+            --yazi-rengi: #2c3e50;
+            --yesil: #2ecc71;
+            --mavi: #3498db;
+            --kirmizi: #e74c3c;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--arka-plan);
+            margin: 0;
+            color: var(--yazi-rengi);
+            overflow-x: hidden;
+        }
+
+        /* RESİM SIĞDIRMA AYARI */
+        .cat-banner { 
+    width: 100%; 
+    height: 200px; 
+    background-color: #ddd; 
+    border-radius: 12px; 
+    margin-bottom: 15px; 
+    background-size: contain; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: -webkit-sticky; /* Safari için */
+    position: sticky;
+    top: 10px; /* Yukarıdan ne kadar boşlukla yapışsın? */
+    z-index: 100; /* Listenin üstünde kalması için */
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-badge { padding: 4px 12px; border-radius: 20px; color: white; display: flex; align-items: center; gap: 5px; }
+        .open { background-color: var(--yesil); }
+        .closed { background-color: var(--kirmizi); }
+        .dot { height: 8px; width: 8px; background-color: white; border-radius: 50%; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        header { background: white; text-align: center; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        header h1 { color: var(--ana-renk); margin: 0; font-size: 1.8rem; }
+
+        .container { max-width: 500px; margin: 0 auto; padding: 20px; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { animation: slideUp 0.4s ease-out; }
+
+        .category-grid { display: grid; gap: 12px; }
+        .category-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+            transition: 0.3s;
+            border: 1px solid #eee;
+            font-weight: 600;
+        }
+        .category-card:hover { background-color: var(--ana-renk); color: white; transform: scale(1.02); }
+
+        .map-frame {
+            width: 100%;
+            height: 250px;
+            border-radius: 15px;
+            border: 0;
+            margin-top: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 15px;
+            text-align: center;
+            border: 2px dashed #ddd;
+        }
+
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .btn { text-decoration: none; padding: 12px; border-radius: 8px; color: white; font-weight: 600; font-size: 0.9rem; text-align: center; }
+        .btn-call { background-color: var(--mavi); }
+        .btn-whatsapp { background-color: var(--yesil); }
+
+        #details-view { display: none; 
+        position: relative;}
+        .back-btn { background: #333; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-bottom: 15px; }
+        
+        .menu-item { 
+            background: white; 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 15px; 
+            margin-bottom: 8px; 
+            border-radius: 10px;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .menu-item:hover { background-color: #fff9f0; border-left: 5px solid var(--ana-renk); }
+        .item-price { font-weight: bold; color: var(--ana-renk); }
+
+        footer { text-align: center; padding: 30px; font-size: 0.7rem; color: #aaa; }
+        /* Banner alanı */
+.simple-slider {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+.slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+}
+.slide {
+    min-width: 100%;
+    height: 100%;
+    /* contain: resmi kesmeden kutunun içine sığdırır */
+    background-size: contain; 
+    /* center: resmi tam ortaya hizalar */
+    background-position: center;
+    /* no-repeat: resim küçükse yanına kopyasını koymaz */
+    background-repeat: no-repeat;
+    /* background-color: arkada boş kalan yerler sırıtmasın diye hafif bir renk */
+    background-color: #f0f0f0; 
+}
+/* --- YENİ: TAM EKRAN FOTOĞRAF GÖRÜNÜMÜ --- */
+#overlay {
+    display: none; /* Başlangıçta gizli */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9); /* Siyah yarı saydam arka plan */
+    z-index: 9999; /* Her şeyin üstünde kalması için */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#overlay-img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(255,255,255,0.2);
+}
+
+#overlay-text {
+    position: absolute;
+    bottom: 20px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+    </style>
+</head>
+<body>
+
+<div class="status-bar">
+    <div id="status-container"></div>
+    <div style="color: #888;">07:00 - 18.30</div>
+</div>
+
+<header>
+    <h1>GELENEKSEL TOSTÇU</h1>
+    <p style="margin:5px; font-size:0.9rem; color:#888;">Sirkeci'nin Esnaf Lezzeti</p>
+</header>
+
+<div class="container">
+    
+    <div id="main-view" class="animate">
+        <div class="simple-slider" id="main-slider">
+    <div class="slider-track" id="slider-track">
+        </div>
+</div>
+        <div class="category-grid">
+            <div class="category-card" onclick="showCategory('tostlar')">🥪 Tostlar</div>
+            <div class="category-card" onclick="showCategory('sandevicler')">🥖 Sandviçler</div>
+            <div class="category-card" onclick="showCategory('pilavlar')">🍚 Pilavlar</div>
+            <div class="category-card" onclick="showCategory('patatesler')">🍟 Patatesler</div>
+            <div class="category-card" onclick="showCategory('icecekler')">🥤 İçecekler</div>
+        </div>
+
+        <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.155702246479!2d28.97341807655848!3d41.01089851921313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab9dde2e17111%3A0xd4713b4689518ddc!2sGeleneksel%20Tostcu!5e0!3m2!1str!2str!4v1709140000000!5m2!1str!2str" allowfullscreen="" loading="lazy"></iframe>
+
+        <div class="contact-box">
+            <h3 style="margin:0">Sipariş & Bilgi</h3>
+            <p style="font-size: 0.8rem; color: #666; margin: 5px 0;">Hobyar Mah. Kafkas Geçidi Sok. No:2, Fatih</p>
+            <div class="btn-group">
+                <a href="sms:05051199900" class="btn btn-call" style="background-color: #46cdcf;">✉︎ SMS Gönder</a>
+                <a href="https://wa.me/905051199900" class="btn btn-whatsapp">💬 WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="details-view">
+        <button class="back-btn" onclick="showMain()">← Geri Dön</button>
+        <div id="cat-img" class="cat-banner" onclick="openImage(this.style.backgroundImage.slice(5, -2))"></div>
+        <h2 id="cat-title" style="margin-top:0"></h2>
+        <div id="items-list"></div>
+        
+        <div class="contact-box" style="border-style: solid; border-color: var(--ana-renk);">
+            <p style="margin:0; font-weight:bold;">Sıcak Sıcak Gelsin!</p>
+            <div class="btn-group">
+                <a href="sms:05051199900" class="btn btn-call" style="background-color: #46cdcf;">✉︎ SMS Yaz</a>
+                <a href="https://wa.me/905051199900" class="btn btn-whatsapp">💬 Mesaj Yaz</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>© 2026 Geleneksel Tostçu | Sirkeci</footer>
+
+<div id="overlay" onclick="closeImage()" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center; cursor: pointer;">
+    <img id="overlay-img" src="" alt="Büyük Görsel" style="max-width: 90%; max-height: 80%; border-radius: 10px;">
+    <div style="position: absolute; bottom: 50px; color: white; background: rgba(0,0,0,0.5); padding: 5px 15px; border-radius: 20px;">Kapatmak için dokun</div>
+</div>
+
+<script>
+    function updateStatus() {
+    const simdi = new Date();
+    const gun = simdi.getDay(); // 0 = Pazar, 1 = Pazartesi...
+    const saat = simdi.getHours();
+    const container = document.getElementById('status-container');
+
+    // Önce gün kontrolü: Eğer bugün Pazar (0) ise direkt kapalı göster
+    if (gun === 0) {
+        container.innerHTML = `<span class="status-badge closed">PAZAR GÜNLERİ KAPALI</span>`;
+    } 
+    // Pazar değilse saat kontrolüne geç (07:00 - 19:00 arası açık)
+    else if (saat >= 7 && saat < 19) {
+        container.innerHTML = `<span class="status-badge open"><span class="dot"></span> ŞİMDİ AÇIK</span>`;
+    } 
+    // Saat aralığı dışındaysa kapalı göster
+    else {
+        container.innerHTML = `<span class="status-badge closed">ŞİMDİ KAPALI</span>`;
+    }
+}
+    updateStatus();
+
+    const data = {
+        tostlar: { 
+            title: "Tostlar", 
+            img: "https://i.postimg.cc/05X7B2qV/Screenshot-2026-03-01-18-23-44-499-com-miui-gallery-edit.jpg",
+            items: [
+                {ad:"Yarım Kavurmalı Kaşarlı (Meşhur)", fiyat:"220₺", img:"images/yarkav.jpg"},
+                {ad:"3 Çeyrek Kavurmalı Kaşarlı (Meşhur)", fiyat:"220₺", img:"images/3ceyrekkav.jpg"},
+                {ad:"Tam Kavurmalı Kaşarlı (Meşhur)", fiyat:"220₺", img:"images/tamkav.jpg"},
+                {ad:"Yarım Karışık Tost", fiyat:"150₺", img:"images/yarımkar.jpg"},
+                {ad:"3 Çeyrek Karışık Tost", fiyat:"150₺", img:"images/3ceyrekkar.jpg"},
+                {ad:"Tam Karışık Tost", fiyat:"150₺", img:"images/tamkar.jpg"},
+                {ad:"Yarım Tulum-Kaşar-Tereyağ", fiyat:"220₺", img:"https://lh3.googleusercontent.com/gps-cs-s/AHVAwepjiCNfmPIKq8A6obBjteGkACTZmoDr6o0Vb57iPvawAT3xDeEadmX0BcVx6orBPGO04F0ghozFDiZMckgcOUm4QZrY35l7RD0P2NxplMzoLf_SpRt6xyEXBe6m1EznMOpA41etAg=s1360-w1360-h1020-rw"},
+                {ad:"3 Çeyrek Tulum-Kaşar-Tereyağ", fiyat:"220₺", img:""},
+                {ad:"Tam Tulum-Kaşar-Tereyağ", fiyat:"220₺", img:""},
+                {ad:"Yarım Kaşarlı", fiyat:"120₺", img:"https://lh3.googleusercontent.com/gps-cs-s/AHVAwepfqqnn9FWOoV7g5nKaAG1yxsbLBIQkE2h85Kq0U96zA443bQo4zNGtQz7tQyJqBBbvjR9mnf7Aw1qbaLVv5wOPTRD-fwOllGQkRAMNLZLyT4WnPBEWqkLdG3fFgZxfig3m5iuZ=s1360-w1360-h1020-rw"},
+                {ad:"3 Çeyrek Kaşarlı", fiyat:"120₺", img:""},
+                {ad:"Tam Kaşarlı", fiyat:"120₺", img:""},
+                {ad:"Yarım Atom Tost", fiyat:"270₺", img:""},
+                {ad:"3 Çeyrek Atom Tost", fiyat:"270₺", img:""},
+                {ad:"Tam Atom Tost", fiyat:"270₺", img:"https://i.postimg.cc/05X7B2qV/Screenshot-2026-03-01-18-23-44-499-com-miui-gallery-edit.jpg"},
+                {ad:"Ayvalık", fiyat:"270₺", img:"images/ayvalık.jpg"},
+                {ad:"👉 Domates / Biber / Salça", fiyat:"Ücretsiz", img:""},
+            ]
+        },
+        icecekler: { 
+    title: "İçecekler", 
+    // HATALI LİNK DÜZELTİLDİ: Artık profil resmi değil, içecek görseli var.
+    img: "", 
+    items: [
+        {ad:"Ayran", fiyat:"25₺", img:"https://avatars.mds.yandex.net/i?id=5ffb57b57ba3721bc057544a14af85b26bf39037-4297958-images-thumbs&n=13"}, 
+        {ad:"Kola", fiyat:"50₺", img:"https://avatars.mds.yandex.net/i?id=c95f40089f41e03e83f63cfa98af2214507b5dd6-4592892-images-thumbs&n=13"},
+        {ad:"Kola (şekersiz)", fiyat:"50₺", img:"https://avatars.mds.yandex.net/i?id=c3ce8bb3906db7c796f6eb08189d4b7216c4cf43-10637828-images-thumbs&n=13"},
+        {ad:"Meyve Suyu", fiyat:"50₺", img:"https://avatars.mds.yandex.net/i?id=0f33a9be3c2ab405b104aaf7d57a240a862ed430-5373299-images-thumbs&n=13"},  
+        {ad:"Limonata", fiyat:"60₺", img:"https://images.migrosone.com/sanalmarket/product/08050170/08050170-8d8a63-1650x1650.jpg"},
+        {ad:"1LT Ayran", fiyat:"70₺", img:"https://avatars.mds.yandex.net/i?id=d76c991020f9530ccf688c4fbe5e8fef678b01f0-8406302-images-thumbs&n=13"},
+        {ad:"Sade Soda", fiyat:"60₺", img:"https://avatars.mds.yandex.net/i?id=e53cc22b221f7482a1f6d50abd6f2bbc9c4b3b44-10107564-images-thumbs&n=13"},
+        {ad:"Niğde Gazozu", fiyat:"60₺", img:"https://avatars.mds.yandex.net/i?id=66141138030664ed7d2a5d8639d81205b2c0b6f5-11931769-images-thumbs&n=13"},
+        {ad:"Vişne Suyu", fiyat:"60₺", img:"https://avatars.mds.yandex.net/i?id=0357b12a6e31e96c10203ffd6146e507bc89e28c-5314773-images-thumbs&n=13"},
+
+
+    ]
+},
+        sandevicler: { 
+            title: "Sandviçler", 
+            img: "", 
+            items: [
+                {ad:"Soğuk Sandviç", fiyat:"180₺", img:"images/san.jpg"},
+                {ad:"Tatlı Sandviç", fiyat:"80₺", img:"images/tatsan.jpg"},
+
+            ]
+        },
+        pilavlar: { 
+            title: "Pilavlar", 
+            img: "images/plav.jpg", 
+            items: [
+
+            {ad:"Büyük Tavuklu Pilav", fiyat:"100₺", img:"images/bpilavt.jpg"},
+            {ad:"Küçük Tavuklu Pilav", fiyat:"100₺", img:""},
+            {ad:"Küçük Pilav (tavuksuz)", fiyat:"100₺", img:""},
+            {ad:"Büyük Pilav (tavuksuz)", fiyat:"100₺", img:""},
+
+
+
+            ]
+        },
+        patatesler: { 
+            title: "Patatesler", 
+            img: "images/patates.jpg", 
+            items: [
+                {ad:"Patso", fiyat:"110₺", img:"images/patso.jpg"},
+                {ad:"1 Porsiyon", fiyat:"110₺", img:"images/1patates.jpg"},
+                {ad:"0.5 Porsiyon", fiyat:"110₺", img:""},
+            ]
+        }
+    };
+
+    function showCategory(key) {
+        const cat = data[key];
+        if(!cat) return;
+        document.getElementById('main-view').style.display = 'none';
+        const det = document.getElementById('details-view');
+        det.style.display = 'block';
+        det.classList.add('animate');
+        document.getElementById('cat-img').style.backgroundImage = `url('${cat.img}')`;
+        document.getElementById('cat-title').innerText = cat.title;
+        const list = document.getElementById('items-list');
+        list.innerHTML = "";
+        cat.items.forEach(i => {
+            list.innerHTML += `
+                <div class="menu-item" onclick="changeHeaderImg('${i.img}')">
+                    <span>${i.ad}</span>
+                    <span class="item-price">${i.fiyat}</span>
+                </div>`;
+        });
+    }
+
+    function changeHeaderImg(url) { document.getElementById('cat-img').style.backgroundImage = `url('${url}')`; }
+    function showMain() {
+        document.getElementById('main-view').style.display = 'block';
+        document.getElementById('details-view').style.display = 'none';
+    }
+    // Banner Görselleri
+const bannerResimler = [
+    "images/banner1.jpg",
+    "images/banner2.jpg",
+    "images/banner3.jpg",
+    "images/banner4.jpg",
+    "images/banner5.jpg",
+    "images/banner6.jpg",
+    "images/banner7.jpg",
+    "images/banner8.jpg",
+    "images/banner9.jpg",
+    "images/banner10.jpg",
+    "images/banner11.jpg",
+    "images/banner12.jpg",
+    "images/banner13.jpg",
+    "images/banner14.jpg",
+    "images/banner15.jpg",
+];
+// --- SONSUZ DÖNGÜLÜ BANNER SİSTEMİ ---
+const track = document.getElementById('slider-track');
+const slider = document.getElementById('main-slider');
+
+// 1. ADIM: Sonsuzluk için ilk resmin kopyasını sona ekliyoruz
+const resimListesi = [...bannerResimler, bannerResimler[0]]; 
+
+resimListesi.forEach(url => {
+    // Tıklama özelliği (onclick) eklendi
+    track.innerHTML += `<div class="slide" style="background-image: url('${url}')" onclick="openImage('${url}')"></div>`;
+});
+
+let index = 0;
+let startX = 0;
+let isDragging = false;
+let autoSlide;
+
+function updateSlider() {
+    track.style.transition = "transform 0.8s ease-in-out"; // Animasyonu aç
+    track.style.transform = `translateX(-${index * 100}%)`;
+
+    // 2. ADIM: Eğer kopya sona geldiysek, animasyon bitince çaktırmadan başa dön
+    if (index === resimListesi.length - 1) {
+        setTimeout(() => {
+            track.style.transition = "none"; // Animasyonu anlık kapat
+            index = 0;
+            track.style.transform = `translateX(0)`;
+        }, 850); // Animasyon süresinden (0.8s) birazcık sonra
+    }
+}
+
+function startAutoSlide() {
+    clearInterval(autoSlide);
+    autoSlide = setInterval(() => {
+        index++;
+        updateSlider();
+    }, 8000);
+}
+
+startAutoSlide();
+
+// --- DOKUNMATİK & MOUSE KONTROLLERİ (GÜNCELLENMİŞ) ---
+let isMoving = false; // Kaydırma yapılıp yapılmadığını takip eder
+
+slider.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    isMoving = false; // Her dokunuşta sıfırla
+    clearInterval(autoSlide);
+}, {passive: true});
+
+slider.addEventListener('touchmove', () => {
+    isMoving = true; // Parmak hareket ediyorsa bu bir kaydırmadır
+}, {passive: true});
+
+slider.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+
+    // Eğer parmak hareket ettiyse (isMoving true ise) tıklamayı engelle
+    if (isMoving) {
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) index++;
+            else index = (index === 0) ? resimListesi.length - 2 : index - 1;
+        }
+        updateSlider();
+    }
+    
+    isDragging = false;
+    startAutoSlide();
+}, {passive: true});
+
+// MOUSE KONTROLLERİ (Bilgisayar için de aynı mantık)
+slider.addEventListener('mousedown', (e) => { 
+    startX = e.clientX; 
+    isDragging = true; 
+    isMoving = false; 
+    clearInterval(autoSlide); 
+});
+
+slider.addEventListener('mousemove', () => {
+    if(isDragging) isMoving = true;
+});
+
+slider.addEventListener('mouseup', (e) => {
+    if (!isDragging) return;
+    const diff = startX - e.clientX;
+
+    if (isMoving && Math.abs(diff) > 50) {
+        if (diff > 0) index++;
+        else index = (index === 0) ? resimListesi.length - 2 : index - 1;
+        updateSlider();
+    }
+    isDragging = false;
+    startAutoSlide();
+});
+
+// --- ÖNEMLİ: TIKLAMA FONKSİYONUNU GÜNCELLE ---
+function openImage(url) {
+    // Eğer o sırada kaydırma yapılıyorsa (isMoving true ise) resmi açma!
+    if (isMoving) return; 
+
+    const overlay = document.getElementById('overlay');
+    const overlayImg = document.getElementById('overlay-img');
+    overlayImg.src = url;
+    overlay.style.display = 'flex';
+}
+
+function closeImage() {
+    document.getElementById('overlay').style.display = 'none'; // Kutuyu gizle
+}
+</script>
+</body>
+</html>
