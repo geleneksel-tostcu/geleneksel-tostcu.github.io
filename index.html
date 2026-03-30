@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geleneksel Tostçu | Sirkeci'nin Meşhur Lezzeti</title>
-    <link rel="icon" type="image/png" href="images/logoicon.png">
+    <link rel="icon" type="image/png" href="images/logoicon.webp">
 
     <!-- Google Search Console Doğrulama -->
     <meta name="google-site-verification" content="E7GkEUfgT3FvBQK3TkMNqQpQj3SzhPriUR4cD1oQcCM" />
@@ -21,7 +21,7 @@
     <meta property="og:type" content="restaurant">
     <meta property="og:title" content="Geleneksel Tostçu | Sirkeci'nin Meşhur Lezzeti">
     <meta property="og:description" content="Sirkeci'nin meşhur geleneksel tostçusu. Kavurmalı kaşarlı tost, sandviç, pilav ve patates.">
-    <meta property="og:image" content="images/logo.png">
+    <meta property="og:image" content="images/logo.webp">
     <meta property="og:url" content="https://geleneksel-tostcu.github.io/">
     <meta property="og:locale" content="tr_TR">
     <meta property="og:site_name" content="Geleneksel Tostçu">
@@ -34,7 +34,7 @@
       "name": "Geleneksel Tostçu",
       "description": "Sirkeci'nin meşhur geleneksel tostçusu. Kavurmalı kaşarlı tost, sandviç, pilav ve patates.",
       "url": "https://geleneksel-tostcu.github.io/",
-      "image": "images/logo.png",
+      "image": "images/logo.webp",
       "telephone": "+905051199900",
       "address": {
         "@type": "PostalAddress",
@@ -68,10 +68,8 @@
     <style>
         :root {
             --primary: #d35400;
-            /* Daha iştah açıcı, premium bir turuncu/kiremit */
             --primary-hover: #e67e22;
             --bg-color: #f8f9fa;
-            /* Çok hafif gri/kırık beyaz arka plan */
             --card-bg: #ffffff;
             --text-dark: #2d3436;
             --text-muted: #636e72;
@@ -80,7 +78,131 @@
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
             --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
             --radius: 16px;
+            --border-color: rgba(0, 0, 0, 0.05);
         }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-dark: #f0f0f0;
+            --text-muted: #aaaaaa;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        body.dark-mode .status-bar {
+            background-color: #1e1e1e !important;
+            border-color: rgba(255,255,255,0.06);
+        }
+
+        body.dark-mode header {
+            background: #1e1e1e;
+        }
+
+        body.dark-mode .category-card {
+            border-color: rgba(255,255,255,0.06);
+        }
+
+        body.dark-mode .contact-box {
+            border-color: rgba(255,255,255,0.06);
+        }
+
+        body.dark-mode .menu-item {
+            border-color: rgba(255,255,255,0.04);
+        }
+
+        body.dark-mode #hours-modal > div {
+            background: #1e1e1e !important;
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .item-price {
+            background: rgba(211, 84, 0, 0.2);
+        }
+
+        body.dark-mode .btn-call {
+            background-color: #e8eaf0;
+            color: #1a237e;
+        }
+
+        body.dark-mode .fiyat-kutu {
+            background: #1e1e1e !important;
+        }
+
+        /* Tema Switch - Uiverse.io by prikshit_1236 */
+        .theme-toggle-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .theme-toggle-wrapper .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 64px;
+            height: 32px;
+            transform: scale(1);
+            transition: transform 0.2s;
+        }
+        .theme-toggle-wrapper .toggle-switch:hover { transform: scale(1.1); }
+        .theme-toggle-wrapper .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .theme-toggle-wrapper .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(145deg, #f1c40f, #f39c12);
+            transition: 0.4s;
+            border-radius: 34px;
+            box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
+        }
+        .theme-toggle-wrapper .slider:before {
+            position: absolute;
+            content: "☀️";
+            height: 26px; width: 26px;
+            left: 3px; bottom: 3px;
+            background: white;
+            transition: 0.4s;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+        .theme-toggle-wrapper input:checked + .slider {
+            background: linear-gradient(145deg, #2c3e50, #34495e);
+            box-shadow: 0 0 15px rgba(44, 62, 80, 0.5);
+        }
+        .theme-toggle-wrapper input:checked + .slider:before {
+            transform: translateX(32px);
+            content: "🌙";
+        }
+        .theme-toggle-wrapper .clouds {
+            position: absolute; width: 100%; height: 100%;
+            overflow: hidden; pointer-events: none;
+        }
+        .theme-toggle-wrapper .cloud {
+            position: absolute; width: 20px; height: 20px;
+            fill: rgba(255,255,255,0.8); transition: all 0.4s ease;
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+        }
+        .theme-toggle-wrapper .cloud1 { top: 10px; left: 10px; animation: floatCloud1 8s infinite linear; }
+        .theme-toggle-wrapper .cloud2 { top: 15px; left: 40px; transform: scale(0.8); animation: floatCloud2 12s infinite linear; }
+        @keyframes floatCloud1 {
+            0% { transform: translateX(-20px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateX(80px); opacity: 0; }
+        }
+        @keyframes floatCloud2 {
+            0% { transform: translateX(-20px) scale(0.8); opacity: 0; }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.7; }
+            100% { transform: translateX(80px) scale(0.8); opacity: 0; }
+        }
+        .theme-toggle-wrapper input:checked + .slider .cloud { opacity: 0; transform: translateY(-20px); }
+        @media (prefers-reduced-motion: reduce) { .theme-toggle-wrapper .cloud { animation: none; } }
 
         * {
             box-sizing: border-box;
@@ -92,6 +214,8 @@
             margin: 0;
             color: var(--text-dark);
             -webkit-font-smoothing: antialiased;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         /* Üst Durum Çubuğu */
@@ -99,31 +223,41 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 24px;
+            padding: 10px 20px;
             background: var(--card-bg);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid var(--border-color);
             font-size: 0.85rem;
             font-weight: 500;
+            position: relative;
         }
 
+
         .status-badge {
-            padding: 6px 14px;
+            padding: 7px 16px;
             border-radius: 30px;
             color: white;
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .open {
-            background-color: var(--accent-green);
-            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            box-shadow: 0 4px 14px rgba(39, 174, 96, 0.4);
         }
 
         .closed {
-            background-color: #e74c3c;
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            box-shadow: 0 4px 14px rgba(231, 76, 60, 0.4);
+        }
+
+        .closing-soon {
+            background: linear-gradient(135deg, #f39c12, #f1c40f);
+            box-shadow: 0 4px 14px rgba(243, 156, 18, 0.4);
         }
 
         .dot {
@@ -139,15 +273,8 @@
         }
 
         @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.3;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
 
         /* Başlık Alanı */
@@ -217,7 +344,7 @@
             border-radius: var(--radius);
             margin-bottom: 24px;
             box-shadow: var(--shadow-sm);
-            background-color: #eee;
+            background-color: var(--card-bg);
         }
 
         .slider-track {
@@ -372,7 +499,7 @@
         .cat-banner {
             width: 100%;
             height: 220px;
-            background-color: #f1f2f6;
+            background-color: var(--card-bg);
             border-radius: var(--radius);
             margin-bottom: 24px;
             background-size: contain;
@@ -443,6 +570,69 @@
             color: var(--text-muted);
         }
 
+        .fiyat-kutu {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--card-bg);
+            border: 1px solid rgba(211, 84, 0, 0.2);
+            border-radius: var(--radius);
+            padding: 14px 20px;
+            box-shadow: var(--shadow-sm);
+            animation: fiyatPulse 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fiyat-kutu::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary), #e67e22);
+            border-radius: 4px 0 0 4px;
+        }
+
+        @keyframes fiyatPulse {
+            0%, 100% { box-shadow: var(--shadow-sm); }
+            50% { box-shadow: 0 4px 20px rgba(211, 84, 0, 0.15); }
+        }
+
+        .fiyat-ikon {
+            font-size: 1.6rem;
+            animation: fiyatSallan 2.5s ease-in-out infinite;
+        }
+
+        @keyframes fiyatSallan {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .fiyat-icerik { text-align: left; }
+
+        .fiyat-baslik {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--primary);
+            margin-bottom: 2px;
+        }
+
+        .fiyat-tarih {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .fiyat-not {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
         /* --- TAM EKRAN FOTOĞRAF VE TAŞMA ENGELLEME --- */
         #overlay {
             display: none;
@@ -493,15 +683,43 @@
 
 <body>
 
-    <div class="status-bar" onclick="document.getElementById('hours-modal').style.display='flex'"
-        style="cursor: pointer; background-color: #fcfcfc;">
+    <div class="status-bar" onclick="document.getElementById('hours-modal').style.display='flex'" style="cursor: pointer;">
         <div id="status-container"></div>
-        <div style="color: #888; font-weight: bold; text-decoration: underline;">Çalışma Saatleri <span
-                style="font-size: 0.8rem;">▼</span></div>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div style="
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 6px 14px;
+                border-radius: 50px;
+                border: 1.5px solid var(--primary);
+                color: var(--primary);
+                font-weight: 600;
+                font-size: 0.78rem;
+                letter-spacing: 0.3px;
+                background: transparent;
+                transition: all 0.25s;
+                box-shadow: 0 2px 8px rgba(211,84,0,0.12);
+            " onmouseover="this.style.background='rgba(211,84,0,0.1)';this.style.boxShadow='0 4px 12px rgba(211,84,0,0.25)'"
+               onmouseout="this.style.background='transparent';this.style.boxShadow='0 2px 8px rgba(211,84,0,0.12)'">
+                🕐 Çalışma Saatleri <span style="font-size: 0.65rem; opacity:0.7;">▼</span>
+            </div>
+            <div class="theme-toggle-wrapper" onclick="event.stopPropagation()">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="theme-btn" onchange="toggleTheme()">
+                    <div class="slider">
+                        <div class="clouds">
+                            <svg class="cloud cloud1" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg"><path d="M58 20H54.92A14 14 0 0 0 28.36 12.4 8 8 0 0 0 16 20H6a6 6 0 0 0 0 12h52a6 6 0 0 0 0-12z"/></svg>
+                            <svg class="cloud cloud2" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg"><path d="M58 20H54.92A14 14 0 0 0 28.36 12.4 8 8 0 0 0 16 20H6a6 6 0 0 0 0 12h52a6 6 0 0 0 0-12z"/></svg>
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </div>
     </div>
 
     <header>
-        <img src="images/logo.png" alt="Geleneksel Tostçu Logo"
+        <img src="images/logo.webp" alt="Geleneksel Tostçu Logo"
             style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 2px solid #d4af37;">
         <h1>Geleneksel Tostçu</h1>
         <p>Sirkeci'nin Esnaf Lezzeti</p>
@@ -557,7 +775,7 @@
             <h2 id="cat-title" class="section-title"></h2>
             <div id="items-list"></div>
 
-            <div class="contact-box" style="border: 2px solid var(--primary); background: #fffcf9;">
+            <div class="contact-box" style="border: 2px solid var(--primary); background: var(--card-bg);">
                 <h3 style="color: var(--primary);">Sıcak Sıcak Gelsin!</h3>
                 <p>Hemen sipariş verin, kapınıza gelsin.</p>
                 <div class="btn-group">
@@ -571,13 +789,17 @@
     </div>
 
     <footer>
-        <div
-            style="margin-bottom: 15px; font-size: 0.85rem; color: var(--text-muted); background: var(--card-bg); padding: 10px; border-radius: var(--radius); border: 1px solid rgba(0,0,0,0.05); box-shadow: var(--shadow-sm); display: inline-block;">
-            <strong>Fiyat Değişim Tarihi:</strong> 23/03/2026 <br>
-            * Tüm fiyatlarımıza KDV dahildir.
+        <div class="fiyat-kutu">
+            <div class="fiyat-ikon">🏷️</div>
+            <div class="fiyat-icerik">
+                <div class="fiyat-baslik">Fiyat Güncelleme</div>
+                <div class="fiyat-tarih">23 Mart 2026</div>
+                <div class="fiyat-not">* Tüm fiyatlara KDV dahildir</div>
+            </div>
         </div>
-        <br>
-        © 2026 Geleneksel Tostçu | Sirkeci
+        <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 16px;">
+            © 2026 Geleneksel Tostçu | Sirkeci
+        </div>
     </footer>
 
     <div id="overlay" onclick="closeImage()"
@@ -590,23 +812,56 @@
     </div>
 
     <div id="hours-modal" onclick="if(event.target === this) this.style.display='none'"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 10000; justify-content: center; align-items: center;">
-        <div
-            style="background: white; padding: 25px; border-radius: 15px; width: 80%; max-width: 320px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-            <h3 style="margin-top: 0; color: var(--ana-renk); border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">
-                Çalışma Saatlerimiz</h3>
-            <ul
-                style="list-style: none; padding: 0; margin: 15px 0; text-align: left; line-height: 2.2; color: var(--yazi-rengi);">
-                <li><strong>Pzt - Cts:</strong> 07:00 - 18:30</li>
-                <li style="color: var(--kirmizi); font-weight: bold;">Pazar: Kapalı</li>
-            </ul>
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 10000; justify-content: center; align-items: center;">
+        <div style="background: var(--card-bg); padding: 28px 24px; border-radius: 20px; width: 82%; max-width: 320px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); border: 1px solid var(--border-color);">
+
+            <!-- Başlık -->
+            <div style="margin-bottom: 18px;">
+                <div style="font-size: 2rem; margin-bottom: 6px;">🕐</div>
+                <h3 style="margin: 0; color: var(--primary); font-family: 'Playfair Display', serif; font-size: 1.3rem;">Çalışma Saatlerimiz</h3>
+            </div>
+
+            <!-- Günler -->
+            <div style="background: var(--bg-color); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">Hafta İçi</span>
+                    <span style="font-weight: 700; color: var(--accent-green); font-size: 0.95rem;">07:00 – 18:30</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">Cumartesi</span>
+                    <span style="font-weight: 700; color: var(--accent-green); font-size: 0.95rem;">07:00 – 18:30</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">Pazar</span>
+                    <span style="font-weight: 700; color: #e74c3c; font-size: 0.95rem;">Kapalı</span>
+                </div>
+            </div>
+
             <button type="button" onclick="document.getElementById('hours-modal').style.display='none'"
-                style="background: var(--ana-renk); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1rem;">Kapat</button>
+                style="background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; font-weight: 600; width: 100%; font-size: 0.95rem; font-family: inherit; transition: opacity 0.2s;"
+                onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">Kapat</button>
         </div>
     </div>
 
 
     <script>
+        // --- TEMA ---
+        function toggleTheme() {
+            const cb = document.getElementById('theme-btn');
+            const isDark = cb.checked;
+            document.body.classList.toggle('dark-mode', isDark);
+            localStorage.setItem('tema', isDark ? 'dark' : 'light');
+        }
+
+        (function () {
+            const kayitli = localStorage.getItem('tema');
+            if (kayitli === 'dark') {
+                document.body.classList.add('dark-mode');
+                const cb = document.getElementById('theme-btn');
+                if (cb) cb.checked = true;
+            }
+        })();
+
         // --- DURUM KONTROLÜ ---
         function updateStatus() {
             const simdi = new Date();
@@ -614,9 +869,14 @@
             const saat = simdi.getHours();
             const container = document.getElementById('status-container');
 
+            const dakika = simdi.getMinutes();
+            const kapanisYakın = saat === 18 && dakika < 30;
+
             if (gun === 0) {
                 container.innerHTML = `<span class="status-badge closed"><span class="dot"></span> PAZAR KAPALI</span>`;
-            } else if (saat >= 7 && saat < 19) {
+            } else if (kapanisYakın) {
+                container.innerHTML = `<span class="status-badge closing-soon"><span class="dot dot-blink"></span> ŞİMDİ AÇIK</span>`;
+            } else if (saat >= 7 && saat < 18) {
                 container.innerHTML = `<span class="status-badge open"><span class="dot dot-blink"></span> ŞİMDİ AÇIK</span>`;
             } else {
                 container.innerHTML = `<span class="status-badge closed"><span class="dot"></span> ŞİMDİ KAPALI</span>`;
@@ -630,17 +890,17 @@
                 title: "Tostlar",
                 img: "https://i.postimg.cc/05X7B2qV/Screenshot-2026-03-01-18-23-44-499-com-miui-gallery-edit.jpg",
                 items: [
-                    { ad: "Yarım Kavurmalı Kaşarlı (Meşhur)", fiyat: "240₺", img: "images/yarkav.jpg" },
-                    { ad: "3 Çeyrek Kavurmalı Kaşarlı (Meşhur)", fiyat: "300₺", img: "images/3ceyrekkav.jpg" },
-                    { ad: "Tam Kavurmalı Kaşarlı (Meşhur)", fiyat: "480₺", img: "images/tamkav.jpg" },
-                    { ad: "Yarım Karışık Tost", fiyat: "160₺", img: "images/yarımkar.jpg" },
-                    { ad: "3 Çeyrek Karışık Tost", fiyat: "230₺", img: "images/3ceyrekkar.jpg" },
-                    { ad: "Tam Karışık Tost", fiyat: "320₺", img: "images/tamkar.jpg" },
+                    { ad: "Yarım Kavurmalı Kaşarlı (Meşhur)", fiyat: "240₺", img: "images/yarkav.webp" },
+                    { ad: "3 Çeyrek Kavurmalı Kaşarlı (Meşhur)", fiyat: "300₺", img: "images/3ceyrekkav.webp" },
+                    { ad: "Tam Kavurmalı Kaşarlı (Meşhur)", fiyat: "480₺", img: "images/tamkav.webp" },
+                    { ad: "Yarım Karışık Tost", fiyat: "160₺", img: "images/yarımkar.webp" },
+                    { ad: "3 Çeyrek Karışık Tost", fiyat: "230₺", img: "images/3ceyrekkar.webp" },
+                    { ad: "Tam Karışık Tost", fiyat: "320₺", img: "images/tamkar.webp" },
                     { ad: "Yarım Tulum-Kaşar-Tereyağ", fiyat: "200₺", img: "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepjiCNfmPIKq8A6obBjteGkACTZmoDr6o0Vb57iPvawAT3xDeEadmX0BcVx6orBPGO04F0ghozFDiZMckgcOUm4QZrY35l7RD0P2NxplMzoLf_SpRt6xyEXBe6m1EznMOpA41etAg=s1360-w1360-h1020-rw" },
                     { ad: "Yarım Kaşarlı", fiyat: "130₺", img: "https://lh3.googleusercontent.com/gps-cs-s/AHVAwepfqqnn9FWOoV7g5nKaAG1yxsbLBIQkE2h85Kq0U96zA443bQo4zNGtQz7tQyJqBBbvjR9mnf7Aw1qbaLVv5wOPTRD-fwOllGQkRAMNLZLyT4WnPBEWqkLdG3fFgZxfig3m5iuZ=s1360-w1360-h1020-rw" },
                     { ad: "Yarım Ustanın Tavsiyesi", fiyat: "280₺", img: "https://i.postimg.cc/05X7B2qV/Screenshot-2026-03-01-18-23-44-499-com-miui-gallery-edit.jpg" },
-                    { ad: "Ayvalık", fiyat: "240₺", img: "images/ayvalık.jpg" },
-                    { ad: "👉 Domates / Biber / Salça", fiyat: "Ücretsiz", img: "images/domates.png" },
+                    { ad: "Ayvalık", fiyat: "240₺", img: "images/ayvalık.webp" },
+                    { ad: "👉 Domates / Biber / Salça", fiyat: "Ücretsiz", img: "images/domates.webp" },
                 ]
             },
             icecekler: {
@@ -648,6 +908,9 @@
                 img: "https://images.migrosone.com/sanalmarket/product/08050170/08050170-8d8a63-1650x1650.jpg",
                 items: [
                     { ad: "Ayran", fiyat: "50₺", img: "https://avatars.mds.yandex.net/i?id=5ffb57b57ba3721bc057544a14af85b26bf39037-4297958-images-thumbs&n=13" },
+                    { ad: "Çay", fiyat: "50₺", img: "images/cay.webp" },
+                    { ad: "Büyük Çay", fiyat: "70₺", img: "images/bcay.webp" },
+                    { ad: "Közde Türk Kahvesi", fiyat: "90₺", img: "images/kahve.webp" },
                     { ad: "Kola", fiyat: "50₺", img: "https://avatars.mds.yandex.net/i?id=c95f40089f41e03e83f63cfa98af2214507b5dd6-4592892-images-thumbs&n=13" },
                     { ad: "Kola (şekersiz)", fiyat: "50₺", img: "https://avatars.mds.yandex.net/i?id=c3ce8bb3906db7c796f6eb08189d4b7216c4cf43-10637828-images-thumbs&n=13" },
                     { ad: "Meyve Suyu", fiyat: "50₺", img: "https://avatars.mds.yandex.net/i?id=0f33a9be3c2ab405b104aaf7d57a240a862ed430-5373299-images-thumbs&n=13" },
@@ -660,18 +923,18 @@
             },
             sandevicler: {
                 title: "Sandviçler",
-                img: "images/san.jpg",
+                img: "images/san.webp",
                 items: [
-                    { ad: "Soğuk Sandviç karışık kavurmalı", fiyat: "300₺", img: "images/san.jpg" },
-                    { ad: "Soğuk Sandviç karışık kavurmasız", fiyat: "240₺", img: "images/san.jpg" },
-                    { ad: "Tatlı Sandviç", fiyat: "240₺", img: "images/tatsan.jpg" },
+                    { ad: "Soğuk Sandviç karışık kavurmalı", fiyat: "300₺", img: "images/san.webp" },
+                    { ad: "Soğuk Sandviç karışık kavurmasız", fiyat: "240₺", img: "images/san.webp" },
+                    { ad: "Tatlı Sandviç", fiyat: "240₺", img: "images/tatsan.webp" },
                 ]
             },
             pilavlar: {
                 title: "Pilavlar",
-                img: "images/plav.jpg",
+                img: "images/plav.webp",
                 items: [
-                    { ad: "Büyük Tavuklu Pilav", fiyat: "150₺", img: "images/bpilavt.jpg" },
+                    { ad: "Büyük Tavuklu Pilav", fiyat: "150₺", img: "images/bpilavt.webp" },
                     { ad: "Küçük Tavuklu Pilav", fiyat: "130₺", img: "" },
                     { ad: "Büyük Pilav (tavuksuz)", fiyat: "120₺", img: "" },
                     { ad: "Küçük Pilav (tavuksuz)", fiyat: "100₺", img: "" },
@@ -679,10 +942,10 @@
             },
             patatesler: {
                 title: "Patatesler",
-                img: "images/patates.jpg",
+                img: "images/patates.webp",
                 items: [
-                    { ad: "Patso", fiyat: "140₺", img: "images/patso.jpg" },
-                    { ad: "1 Porsiyon", fiyat: "180₺", img: "images/1patates.jpg" },
+                    { ad: "Patso", fiyat: "140₺", img: "images/patso.webp" },
+                    { ad: "1 Porsiyon", fiyat: "180₺", img: "images/1patates.webp" },
                     { ad: "0.5 Porsiyon", fiyat: "100₺", img: "" },
                 ]
             }
@@ -755,11 +1018,11 @@
         }
 
         // Yüklenebilen görselleri bul, boşları atla
-        const maxBanner = 50;
+        const maxBanner = 25;
         let loaded = [];
         let checked = 0;
         for (let i = 1; i <= maxBanner; i++) {
-            const url = `images/banners/banner${i}.jpg`;
+            const url = `images/banners/banner${i}.webp`;
             const img = new Image();
             img.onload = () => {
                 loaded.push({ i, url });

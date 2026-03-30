@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://geleneksel-tostcu.github.io/sitemap.xml
