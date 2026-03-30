@@ -6,6 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geleneksel Tostçu | Sirkeci'nin Meşhur Lezzeti</title>
     <link rel="icon" type="image/png" href="images/logoicon.png">
+
+    <!-- Google Search Console Doğrulama -->
+    <meta name="google-site-verification" content="E7GkEUfgT3FvBQK3TkMNqQpQj3SzhPriUR4cD1oQcCM" />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sirkeci'nin meşhur geleneksel tostçusu. Kavurmalı kaşarlı tost, sandviç, pilav ve patates. Hobyar Mah. Kafkas Geçidi Sok. No:2, Fatih/İstanbul.">
+    <meta name="keywords" content="geleneksel tostçu, sirkeci tost, kavurmalı tost, kaşarlı tost, sirkeci büfe, fatih tostçu, istanbul tost, esnaf lokantası sirkeci">
+    <meta name="author" content="Geleneksel Tostçu">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://geleneksel-tostcu.github.io/">
+
+    <!-- Open Graph (WhatsApp, Facebook paylaşımları için) -->
+    <meta property="og:type" content="restaurant">
+    <meta property="og:title" content="Geleneksel Tostçu | Sirkeci'nin Meşhur Lezzeti">
+    <meta property="og:description" content="Sirkeci'nin meşhur geleneksel tostçusu. Kavurmalı kaşarlı tost, sandviç, pilav ve patates.">
+    <meta property="og:image" content="images/logo.png">
+    <meta property="og:url" content="https://geleneksel-tostcu.github.io/">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:site_name" content="Geleneksel Tostçu">
+
+    <!-- Schema.org Yapısal Veri (Google için) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FoodEstablishment",
+      "name": "Geleneksel Tostçu",
+      "description": "Sirkeci'nin meşhur geleneksel tostçusu. Kavurmalı kaşarlı tost, sandviç, pilav ve patates.",
+      "url": "https://geleneksel-tostcu.github.io/",
+      "image": "images/logo.png",
+      "telephone": "+905051199900",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Hobyar Mah. Kafkas Geçidi Sok. No:2",
+        "addressLocality": "Fatih",
+        "addressRegion": "İstanbul",
+        "addressCountry": "TR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.0108985,
+        "longitude": 28.9734180
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          "opens": "07:00",
+          "closes": "18:30"
+        }
+      ],
+      "servesCuisine": "Türk Mutfağı",
+      "priceRange": "₺"
+    }
+    </script>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
         rel="stylesheet">
@@ -679,25 +733,55 @@
         }
 
         // --- SLIDER SİSTEMİ ---
-        const bannerResimler = [
-            "images/banner1.jpg", "images/banner2.jpg", "images/banner3.jpg",
-            "images/banner4.jpg", "images/banner5.jpg", "images/banner6.jpg",
-            "images/banner7.jpg", "images/banner8.jpg", "images/banner9.jpg",
-            "images/banner10.jpg", "images/banner11.jpg", "images/banner12.jpg",
-            "images/banner13.jpg", "images/banner14.jpg", "images/banner15.jpg"
-        ];
-
         const track = document.getElementById('slider-track');
         const slider = document.getElementById('main-slider');
 
-        // Güvenlik: Eğer resimler yüklenemezse placeholder koy (Geliştirme aşaması için)
-        const resimListesi = bannerResimler.length > 0 ? [...bannerResimler, bannerResimler[0]] : ['https://via.placeholder.com/600x300?text=Banner'];
+        let resimListesi = [];
 
-        resimListesi.forEach(url => {
-            track.innerHTML += `<div class="slide" style="background-image: url('${url}')" onclick="openImage('${url}')"></div>`;
-        });
+        // Yapı: [son_klon, img1, img2, ..., imgN, ilk_klon]
+        // index=1'den başlar, 1=ilk gerçek resim
+        let realCount = 0;
 
-        let index = 0;
+        function buildSlider(urls) {
+            realCount = urls.length;
+            resimListesi = [urls[urls.length - 1], ...urls, urls[0]];
+            track.innerHTML = '';
+            resimListesi.forEach(url => {
+                track.innerHTML += `<div class="slide" style="background-image: url('${url}')" onclick="openImage('${url}')"></div>`;
+            });
+            index = 1;
+            track.style.transition = 'none';
+            track.style.transform = `translateX(-100%)`;
+        }
+
+        // Yüklenebilen görselleri bul, boşları atla
+        const maxBanner = 50;
+        let loaded = [];
+        let checked = 0;
+        for (let i = 1; i <= maxBanner; i++) {
+            const url = `images/banners/banner${i}.jpg`;
+            const img = new Image();
+            img.onload = () => {
+                loaded.push({ i, url });
+                checked++;
+                if (checked === maxBanner) {
+                    loaded.sort((a, b) => a.i - b.i);
+                    buildSlider(loaded.map(x => x.url));
+                    startAutoSlide();
+                }
+            };
+            img.onerror = () => {
+                checked++;
+                if (checked === maxBanner) {
+                    loaded.sort((a, b) => a.i - b.i);
+                    buildSlider(loaded.map(x => x.url));
+                    startAutoSlide();
+                }
+            };
+            img.src = url;
+        }
+
+        let index = 1;
         let startX = 0;
         let isDragging = false;
         let isMoving = false;
@@ -707,11 +791,20 @@
             track.style.transition = "transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)";
             track.style.transform = `translateX(-${index * 100}%)`;
 
-            if (index === resimListesi.length - 1) {
+            // İleri: son klondan gerçek ilk resme atla
+            if (index === realCount + 1) {
                 setTimeout(() => {
                     track.style.transition = "none";
-                    index = 0;
-                    track.style.transform = `translateX(0)`;
+                    index = 1;
+                    track.style.transform = `translateX(-100%)`;
+                }, 850);
+            }
+            // Geri: baştaki klondan gerçek son resme atla
+            if (index === 0) {
+                setTimeout(() => {
+                    track.style.transition = "none";
+                    index = realCount;
+                    track.style.transform = `translateX(-${realCount * 100}%)`;
                 }, 850);
             }
         }
@@ -723,8 +816,6 @@
                 updateSlider();
             }, 5000); // 8 saniyeden 5 saniyeye düşürüldü, daha dinamik hissettirir.
         }
-
-        startAutoSlide();
 
         // Dokunmatik ve Mouse Kontrolleri
         slider.addEventListener('touchstart', (e) => {
@@ -743,7 +834,7 @@
 
             if (isMoving && Math.abs(diff) > 40) {
                 if (diff > 0) index++;
-                else index = (index === 0) ? resimListesi.length - 2 : index - 1;
+                else index = index - 1;
                 updateSlider();
             }
             isDragging = false;
@@ -765,7 +856,7 @@
 
             if (isMoving && Math.abs(diff) > 40) {
                 if (diff > 0) index++;
-                else index = (index === 0) ? resimListesi.length - 2 : index - 1;
+                else index = index - 1;
                 updateSlider();
             }
             isDragging = false;
