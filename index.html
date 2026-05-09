@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geleneksel Tostçu | Sirkeci'nin Meşhur Lezzeti</title>
-    <link rel="icon" type="image/png" href="images/logoicon.webp">
+    <link rel="icon" type="image/webp" href="images/diger/logoicon.webp">
 
     <!-- Google Search Console Doğrulama -->
     <meta name="google-site-verification" content="E7GkEUfgT3FvBQK3TkMNqQpQj3SzhPriUR4cD1oQcCM" />
@@ -18,13 +18,25 @@
     <link rel="canonical" href="https://geleneksel-tostcu.github.io/">
 
     <!-- Open Graph (WhatsApp, Facebook paylaşımları için) -->
-    <meta property="og:type" content="restaurant">
+    <meta property="og:type" content="website">
     <meta property="og:title" content="Geleneksel Tostçu | Sirkeci'nin Meşhur Lezzeti">
     <meta property="og:description" content="Sirkeci'nin meşhur geleneksel tostçusu. Kavurmalı kaşarlı tost, sandviç, pilav ve patates.">
-    <meta property="og:image" content="https://geleneksel-tostcu.github.io/images/logo.webp">
+    <meta property="og:image" content="https://geleneksel-tostcu.github.io/images/diger/og-image.jpg">
+    <meta property="og:image:secure_url" content="https://geleneksel-tostcu.github.io/images/diger/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Geleneksel Tostçu - Sirkeci'nin Meşhur Lezzeti">
     <meta property="og:url" content="https://geleneksel-tostcu.github.io/">
     <meta property="og:locale" content="tr_TR">
     <meta property="og:site_name" content="Geleneksel Tostçu">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Geleneksel Tostçu | Sirkeci'nin Meşhur Lezzeti">
+    <meta name="twitter:description" content="Sirkeci'nin meşhur geleneksel tostçusu. Kavurmalı kaşarlı tost, sandviç, pilav ve patates.">
+    <meta name="twitter:image" content="https://geleneksel-tostcu.github.io/images/diger/og-image.jpg">
+    <meta name="twitter:image:alt" content="Geleneksel Tostçu - Sirkeci'nin Meşhur Lezzeti">
 
     <!-- Schema.org Yapısal Veri (Google için) -->
     <script type="application/ld+json">
@@ -34,7 +46,7 @@
       "name": "Geleneksel Tostçu",
       "description": "Sirkeci'nin meşhur geleneksel tostçusu. Kavurmalı kaşarlı tost, sandviç, pilav ve patates.",
       "url": "https://geleneksel-tostcu.github.io/",
-      "image": "https://geleneksel-tostcu.github.io/images/logo.webp",
+      "image": "https://geleneksel-tostcu.github.io/images/diger/logo.webp",
       "telephone": "+905051199900",
       "address": {
         "@type": "PostalAddress",
@@ -61,7 +73,7 @@
     }
     </script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=JetBrains+Mono:wght@500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -130,79 +142,169 @@
             background: #1e1e1e !important;
         }
 
-        /* Tema Switch - Uiverse.io by prikshit_1236 */
+        /* Tema Switch - Uiverse.io by RiccardoRapelli */
         .theme-toggle-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .theme-toggle-wrapper .toggle-switch {
+        .theme-toggle-wrapper .switch {
             position: relative;
             display: inline-block;
             width: 64px;
             height: 32px;
-            transform: scale(1);
             transition: transform 0.2s;
         }
-        .theme-toggle-wrapper .toggle-switch:hover { transform: scale(1.1); }
-        .theme-toggle-wrapper .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .theme-toggle-wrapper .switch:hover { transform: scale(1.08); }
+        .theme-toggle-wrapper .switch #theme-btn {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
         .theme-toggle-wrapper .slider {
             position: absolute;
             cursor: pointer;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(145deg, #f1c40f, #f39c12);
+            background-color: #2196f3;
             transition: 0.4s;
-            border-radius: 34px;
-            box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
+            z-index: 0;
+            overflow: hidden;
         }
-        .theme-toggle-wrapper .slider:before {
+        .theme-toggle-wrapper .sun-moon {
             position: absolute;
-            content: "☀️";
-            height: 26px; width: 26px;
-            left: 3px; bottom: 3px;
-            background: white;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 4px;
+            bottom: 4px;
+            background-color: yellow;
+            transition: transform 0.6s ease-in-out, background-color 0.4s;
+        }
+        .theme-toggle-wrapper #theme-btn:checked + .slider {
+            background-color: black;
+        }
+        .theme-toggle-wrapper #theme-btn:focus + .slider {
+            box-shadow: 0 0 1px #2196f3;
+        }
+        .theme-toggle-wrapper #theme-btn:checked + .slider .sun-moon {
+            transform: translateX(32px) rotate(360deg);
+            background-color: white;
+        }
+        .theme-toggle-wrapper .moon-dot {
+            opacity: 0;
             transition: 0.4s;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            z-index: 2;
+            fill: gray;
         }
-        .theme-toggle-wrapper input:checked + .slider {
-            background: linear-gradient(145deg, #2c3e50, #34495e);
-            box-shadow: 0 0 15px rgba(44, 62, 80, 0.5);
+        .theme-toggle-wrapper #theme-btn:checked + .slider .sun-moon .moon-dot {
+            opacity: 1;
         }
-        .theme-toggle-wrapper input:checked + .slider:before {
-            transform: translateX(32px);
-            content: "🌙";
+        .theme-toggle-wrapper .slider.round { border-radius: 34px; }
+        .theme-toggle-wrapper .slider.round .sun-moon { border-radius: 50%; }
+        .theme-toggle-wrapper #moon-dot-1 {
+            left: 9px; top: 3px;
+            position: absolute;
+            width: 6px; height: 6px;
+            z-index: 4;
         }
-        .theme-toggle-wrapper .clouds {
-            position: absolute; width: 100%; height: 100%;
-            overflow: hidden; pointer-events: none;
+        .theme-toggle-wrapper #moon-dot-2 {
+            left: 2px; top: 9px;
+            position: absolute;
+            width: 9px; height: 9px;
+            z-index: 4;
         }
-        .theme-toggle-wrapper .cloud {
-            position: absolute; width: 20px; height: 20px;
-            fill: rgba(255,255,255,0.8); transition: all 0.4s ease;
-            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+        .theme-toggle-wrapper #moon-dot-3 {
+            left: 15px; top: 16px;
+            position: absolute;
+            width: 3px; height: 3px;
+            z-index: 4;
         }
-        .theme-toggle-wrapper .cloud1 { top: 10px; left: 10px; animation: floatCloud1 8s infinite linear; }
-        .theme-toggle-wrapper .cloud2 { top: 15px; left: 40px; transform: scale(0.8); animation: floatCloud2 12s infinite linear; }
-        @keyframes floatCloud1 {
-            0% { transform: translateX(-20px); opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { transform: translateX(80px); opacity: 0; }
+        .theme-toggle-wrapper #light-ray-1 {
+            left: -8px; top: -8px;
+            position: absolute;
+            width: 40px; height: 40px;
+            z-index: -1;
+            fill: white;
+            opacity: 0.1;
         }
-        @keyframes floatCloud2 {
-            0% { transform: translateX(-20px) scale(0.8); opacity: 0; }
-            20% { opacity: 0.7; }
-            80% { opacity: 0.7; }
-            100% { transform: translateX(80px) scale(0.8); opacity: 0; }
+        .theme-toggle-wrapper #light-ray-2 {
+            left: -50%; top: -50%;
+            position: absolute;
+            width: 50px; height: 50px;
+            z-index: -1;
+            fill: white;
+            opacity: 0.1;
         }
-        .theme-toggle-wrapper input:checked + .slider .cloud { opacity: 0; transform: translateY(-20px); }
-        @media (prefers-reduced-motion: reduce) { .theme-toggle-wrapper .cloud { animation: none; } }
+        .theme-toggle-wrapper #light-ray-3 {
+            left: -18px; top: -18px;
+            position: absolute;
+            width: 56px; height: 56px;
+            z-index: -1;
+            fill: white;
+            opacity: 0.1;
+        }
+        .theme-toggle-wrapper .cloud-light {
+            position: absolute;
+            fill: #eee;
+            animation: cloud-move 6s infinite;
+        }
+        .theme-toggle-wrapper .cloud-dark {
+            position: absolute;
+            fill: #ccc;
+            animation: cloud-move 6s 1s infinite;
+        }
+        .theme-toggle-wrapper #cloud-1 { left: 30px; top: 13px; width: 38px; }
+        .theme-toggle-wrapper #cloud-2 { left: 44px; top: 9px;  width: 18px; }
+        .theme-toggle-wrapper #cloud-3 { left: 18px; top: 22px; width: 28px; }
+        .theme-toggle-wrapper #cloud-4 { left: 36px; top: 16px; width: 38px; }
+        .theme-toggle-wrapper #cloud-5 { left: 48px; top: 12px; width: 18px; }
+        .theme-toggle-wrapper #cloud-6 { left: 22px; top: 24px; width: 28px; }
+        @keyframes cloud-move {
+            0%   { transform: translateX(0px); }
+            40%  { transform: translateX(4px); }
+            80%  { transform: translateX(-4px); }
+            100% { transform: translateX(0px); }
+        }
+        .theme-toggle-wrapper .stars {
+            transform: translateY(-32px);
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .theme-toggle-wrapper .star {
+            fill: white;
+            position: absolute;
+            transition: 0.4s;
+            animation: star-twinkle 2s infinite;
+        }
+        .theme-toggle-wrapper #theme-btn:checked + .slider .stars {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .theme-toggle-wrapper #star-1 { width: 18px; top: 2px;  left: 3px;  animation-delay: 0.3s; }
+        .theme-toggle-wrapper #star-2 { width: 6px;  top: 14px; left: 3px; }
+        .theme-toggle-wrapper #star-3 { width: 11px; top: 18px; left: 10px; animation-delay: 0.6s; }
+        .theme-toggle-wrapper #star-4 { width: 16px; top: 0px;  left: 18px; animation-delay: 1.3s; }
+        @keyframes star-twinkle {
+            0%   { transform: scale(1); }
+            40%  { transform: scale(1.2); }
+            80%  { transform: scale(0.8); }
+            100% { transform: scale(1); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .theme-toggle-wrapper .cloud-light,
+            .theme-toggle-wrapper .cloud-dark,
+            .theme-toggle-wrapper .star { animation: none; }
+        }
+
+        /* View Transitions API - tema geçişi crossfade */
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+            animation-duration: 0.45s;
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            ::view-transition-old(root),
+            ::view-transition-new(root) { animation-duration: 0.01s; }
+        }
 
         * {
             box-sizing: border-box;
@@ -261,6 +363,8 @@
         .closing-soon {
             background: linear-gradient(135deg, #f39c12, #f1c40f);
             box-shadow: 0 4px 14px rgba(243, 156, 18, 0.4);
+            font-size: 0.65rem;
+            letter-spacing: 0.2px;
         }
 
         .dot {
@@ -524,6 +628,83 @@
             padding-bottom: 5px;
         }
 
+        /* Filtre / Arama */
+        .filter-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .search-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-wrap i {
+            position: absolute;
+            left: 14px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 11px 14px 11px 38px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(211, 84, 0, 0.12);
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            padding: 6px 12px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chip:hover {
+            color: var(--primary);
+            border-color: rgba(211, 84, 0, 0.3);
+        }
+
+        .chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
         /* Menü Öğeleri */
         .menu-item {
             background: var(--card-bg);
@@ -635,6 +816,261 @@
             margin-top: 2px;
         }
 
+        /* Footer satırı: fiyat kutusu + içindekiler butonu yan yana */
+        .footer-row {
+            display: inline-flex;
+            align-items: stretch;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+
+        /* İçindekiler Butonu - Yuvarlak FAB */
+        .icindekiler-btn-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .icindekiler-btn {
+            position: relative;
+            width: 56px;
+            height: 56px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(211, 84, 0, 0.35);
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            overflow: hidden;
+        }
+
+        .icindekiler-btn::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(211, 84, 0, 0.35);
+            animation: ringPulse 2.4s ease-out infinite;
+        }
+
+        @keyframes ringPulse {
+            0% { transform: scale(0.85); opacity: 0.8; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+
+        .icindekiler-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 26px rgba(211, 84, 0, 0.5);
+        }
+
+        .icindekiler-btn:active { transform: translateY(-1px) scale(0.98); }
+
+        .icindekiler-btn .icon {
+            display: block;
+            animation: pulse-ing 2.5s ease-in-out infinite;
+        }
+
+        .icindekiler-btn-label {
+            display: block;
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        @keyframes pulse-ing {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* İçindekiler Sayfası */
+        #ingredients-view {
+            display: none;
+        }
+
+        .ing-hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            margin-bottom: 24px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(211, 84, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ing-hero::after {
+            content: '';
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 200px; height: 200px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+
+        .ing-hero::before {
+            content: '';
+            position: absolute;
+            bottom: -40%; left: -10%;
+            width: 160px; height: 160px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50%;
+        }
+
+        .ing-hero-icon {
+            font-size: 2.6rem;
+            margin-bottom: 6px;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ing-hero h2 {
+            margin: 0 0 6px 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ing-hero p {
+            margin: 0;
+            font-size: 0.88rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .ing-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 18px 14px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ing-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .ing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(211, 84, 0, 0.25);
+        }
+
+        .ing-card:hover::before { transform: scaleX(1); }
+
+        .ing-img-wrap {
+            width: 100%;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, rgba(211,84,0,0.04), rgba(230,126,34,0.06));
+            border-radius: 12px;
+            padding: 8px;
+        }
+
+        body.dark-mode .ing-img-wrap {
+            background: linear-gradient(135deg, rgba(211,84,0,0.12), rgba(230,126,34,0.08));
+        }
+
+        .ing-img-wrap img {
+            max-height: 95px !important;
+            max-width: 95% !important;
+            object-fit: contain !important;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+            transition: transform 0.3s ease;
+        }
+
+        .ing-card:hover .ing-img-wrap img {
+            transform: scale(1.08);
+        }
+
+        .ing-name {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            margin: 0 0 4px 0;
+        }
+
+        .ing-desc {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+            margin: 0;
+        }
+
+        .ing-info-box {
+            margin-top: 24px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .ing-info-box .info-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+
+        .ing-info-box h4 {
+            margin: 0 0 6px 0;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .ing-info-box p {
+            margin: 0;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        body.dark-mode .ing-card {
+            border-color: rgba(255,255,255,0.06);
+        }
+
+        body.dark-mode .ing-info-box {
+            border-color: var(--primary);
+        }
+
         /* --- TAM EKRAN FOTOĞRAF VE TAŞMA ENGELLEME --- */
         #overlay {
             display: none;
@@ -669,23 +1105,12 @@
             object-fit: contain;
         }
 
-        .overlay-close {
-            position: absolute;
-            bottom: 30px;
-            color: white;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
     </style>
 </head>
 
 <body>
 
-    <div class="status-bar" onclick="document.getElementById('hours-modal').style.display='flex'" style="cursor: pointer;">
+    <div class="status-bar" onclick="document.getElementById('hours-modal').style.display='flex'; startCountdown();" style="cursor: pointer;">
         <div id="status-container"></div>
         <div style="display:flex; align-items:center; gap:8px;">
             <div style="
@@ -708,12 +1133,29 @@
                 🕐 Saatler <span style="font-size: 0.6rem; opacity:0.7;">▼</span>
             </div>
             <div class="theme-toggle-wrapper" onclick="event.stopPropagation()">
-                <label class="toggle-switch">
-                    <input type="checkbox" id="theme-btn" onchange="toggleTheme()">
-                    <div class="slider">
-                        <div class="clouds">
-                            <svg class="cloud cloud1" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg"><path d="M58 20H54.92A14 14 0 0 0 28.36 12.4 8 8 0 0 0 16 20H6a6 6 0 0 0 0 12h52a6 6 0 0 0 0-12z"/></svg>
-                            <svg class="cloud cloud2" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg"><path d="M58 20H54.92A14 14 0 0 0 28.36 12.4 8 8 0 0 0 16 20H6a6 6 0 0 0 0 12h52a6 6 0 0 0 0-12z"/></svg>
+                <label class="switch">
+                    <input id="theme-btn" type="checkbox" onchange="toggleTheme()" />
+                    <div class="slider round">
+                        <div class="sun-moon">
+                            <svg id="moon-dot-1" class="moon-dot" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <svg id="moon-dot-2" class="moon-dot" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <svg id="moon-dot-3" class="moon-dot" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <svg id="light-ray-1" class="light-ray" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <svg id="light-ray-2" class="light-ray" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <svg id="light-ray-3" class="light-ray" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+
+                            <svg id="cloud-1" class="cloud-dark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <svg id="cloud-2" class="cloud-dark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <svg id="cloud-3" class="cloud-dark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <svg id="cloud-4" class="cloud-light" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <svg id="cloud-5" class="cloud-light" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                            <svg id="cloud-6" class="cloud-light" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"></circle></svg>
+                        </div>
+                        <div class="stars">
+                            <svg id="star-1" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
+                            <svg id="star-2" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
+                            <svg id="star-3" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
+                            <svg id="star-4" class="star" viewBox="0 0 20 20"><path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z"></path></svg>
                         </div>
                     </div>
                 </label>
@@ -722,7 +1164,7 @@
     </div>
 
     <header>
-        <img src="images/logo.webp" alt="Geleneksel Tostçu Logo" class="header-logo">
+        <img src="images/diger/logo.webp" alt="Geleneksel Tostçu Logo" class="header-logo">
         <h1>Geleneksel Tostçu</h1>
         <p>Sirkeci'nin Esnaf Lezzeti</p>
     </header>
@@ -752,7 +1194,7 @@
                 </div>
             </div>
 
-            <iframe class="map-frame"
+            <iframe class="map-frame" title="Konum Haritası"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.155702246479!2d28.97341807655848!3d41.01089851921313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab9dde2e17111%3A0xd4713b4689518ddc!2sGeleneksel%20Tostcu!5e0!3m2!1str!2str!4v1709140000000!5m2!1str!2str"
                 allowfullscreen="" loading="lazy"></iframe>
 
@@ -769,12 +1211,40 @@
             </div>
         </div>
 
+        <div id="ingredients-view">
+            <button class="back-btn" onclick="hideIngredients()"><i class="fa-solid fa-arrow-left"></i> Menüye Dön</button>
+
+            <div class="ing-grid" id="ing-grid"></div>
+
+            <div class="ing-info-box">
+                <div class="info-icon">✨</div>
+                <div>
+                    <h4>Özenle Seçilmiş İçerikler</h4>
+                    <p>Tüm tost, sandviç ve sıcak ürünlerimizde yıllardır aynı titizlikle seçilen, kaliteli markalardan tedarik edilen malzemeler kullanılmaktadır. Geleneksel lezzet, doğal içerik.</p>
+                </div>
+            </div>
+        </div>
+
         <div id="details-view">
             <button class="back-btn" onclick="showMain()"><i class="fa-solid fa-arrow-left"></i> Menüye Dön</button>
             <div id="cat-img" class="cat-banner"
                 onclick="let url = this.style.backgroundImage.replace(/^url\(|\)$/g, '').replace(/['\x22]/g, ''); openImage(url);">
             </div>
             <h2 id="cat-title" class="section-title"></h2>
+
+            <div class="filter-bar" id="filter-bar">
+                <div class="search-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" class="search-input" placeholder="Ürün ara..." oninput="applyFilter()">
+                </div>
+                <div class="filter-chips" id="filter-chips">
+                    <button type="button" class="chip active" data-filter="all" onclick="setFilter(this)">Tümü</button>
+                    <button type="button" class="chip" data-filter="lt150" onclick="setFilter(this)">≤150₺</button>
+                    <button type="button" class="chip" data-filter="150-300" onclick="setFilter(this)">150–300₺</button>
+                    <button type="button" class="chip" data-filter="gt300" onclick="setFilter(this)">300₺↑</button>
+                </div>
+            </div>
+
             <div id="items-list"></div>
 
             <div class="contact-box" style="border: 2px solid var(--primary); background: var(--card-bg);">
@@ -791,12 +1261,21 @@
     </div>
 
     <footer>
-        <div class="fiyat-kutu">
-            <div class="fiyat-ikon">🏷️</div>
-            <div class="fiyat-icerik">
-                <div class="fiyat-baslik">Fiyat Güncelleme</div>
-                <div class="fiyat-tarih">23 Mart 2026</div>
-                <div class="fiyat-not">* Tüm fiyatlara KDV dahildir</div>
+        <div class="footer-row">
+            <div class="fiyat-kutu">
+                <div class="fiyat-ikon">🏷️</div>
+                <div class="fiyat-icerik">
+                    <div class="fiyat-baslik">Fiyat Güncelleme</div>
+                    <div class="fiyat-tarih">23 Mart 2026</div>
+                    <div class="fiyat-not">* Tüm fiyatlara KDV dahildir</div>
+                </div>
+            </div>
+
+            <div class="icindekiler-btn-wrap" id="ing-fab-wrap">
+                <button type="button" class="icindekiler-btn" onclick="showIngredients()" aria-label="İçindekiler">
+                    <span class="icon">🧾</span>
+                </button>
+                <span class="icindekiler-btn-label">Malzemeler</span>
             </div>
         </div>
         <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 16px;">
@@ -804,16 +1283,14 @@
         </div>
     </footer>
 
-    <div id="overlay" onclick="closeImage()"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center; cursor: pointer;">
-        <img id="overlay-img" src="" alt="Büyük Görsel"
-            style="max-width: 90%; max-height: 80%; border-radius: 10px; object-fit: contain;">
+    <div id="overlay" onclick="closeImage()">
+        <img id="overlay-img" src="" alt="Büyük Görsel">
         <div
             style="position: absolute; bottom: 50px; color: white; background: rgba(0,0,0,0.5); padding: 5px 15px; border-radius: 20px;">
             Kapatmak için dokun</div>
     </div>
 
-    <div id="hours-modal" onclick="if(event.target === this) this.style.display='none'"
+    <div id="hours-modal" onclick="if(event.target === this){ this.style.display='none'; stopCountdown(); }"
         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 10000; justify-content: center; align-items: center;">
         <div style="background: var(--card-bg); padding: 28px 24px; border-radius: 20px; width: 82%; max-width: 320px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); border: 1px solid var(--border-color);">
 
@@ -824,7 +1301,7 @@
             </div>
 
             <!-- Günler -->
-            <div style="background: var(--bg-color); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px;">
+            <div style="background: var(--bg-color); border-radius: 12px; padding: 14px 16px; margin-bottom: 14px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color);">
                     <span style="color: var(--text-muted); font-size: 0.9rem;">Hafta İçi</span>
                     <span style="font-weight: 700; color: var(--accent-green); font-size: 0.95rem;">07:00 – 18:30</span>
@@ -839,7 +1316,16 @@
                 </div>
             </div>
 
-            <button type="button" onclick="document.getElementById('hours-modal').style.display='none'"
+            <!-- Geri Sayım -->
+            <div id="countdown-box" style="display:flex; align-items:center; gap:12px; background: linear-gradient(135deg, rgba(211,84,0,0.08), rgba(230,126,34,0.12)); border: 1px solid rgba(211,84,0,0.25); border-radius: 12px; padding: 12px 14px; margin-bottom: 16px;">
+                <div id="countdown-icon" style="font-size:1.5rem; line-height:1;">⏳</div>
+                <div style="text-align:left; flex:1;">
+                    <div id="countdown-label" style="font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.6px; color: var(--primary); margin-bottom:2px;">Kapanmasına</div>
+                    <div id="countdown-value" style="font-size:1.05rem; font-weight:600; color: var(--text-dark); font-family: 'Poppins', sans-serif; font-variant-numeric: tabular-nums; letter-spacing: 0.2px;">—</div>
+                </div>
+            </div>
+
+            <button type="button" onclick="document.getElementById('hours-modal').style.display='none'; stopCountdown();"
                 style="background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; font-weight: 600; width: 100%; font-size: 0.95rem; font-family: inherit; transition: opacity 0.2s;"
                 onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">Kapat</button>
         </div>
@@ -851,8 +1337,15 @@
         function toggleTheme() {
             const cb = document.getElementById('theme-btn');
             const isDark = cb.checked;
-            document.body.classList.toggle('dark-mode', isDark);
-            localStorage.setItem('tema', isDark ? 'dark' : 'light');
+            const apply = () => {
+                document.body.classList.toggle('dark-mode', isDark);
+                localStorage.setItem('tema', isDark ? 'dark' : 'light');
+            };
+            if (document.startViewTransition) {
+                document.startViewTransition(apply);
+            } else {
+                apply();
+            }
         }
 
         (function () {
@@ -877,7 +1370,7 @@
             if (gun === 0) {
                 container.innerHTML = `<span class="status-badge closed"><span class="dot"></span> PAZAR KAPALI</span>`;
             } else if (kapanisYakın) {
-                container.innerHTML = `<span class="status-badge closing-soon"><span class="dot dot-blink"></span> ŞİMDİ AÇIK</span>`;
+                container.innerHTML = `<span class="status-badge closing-soon"><span class="dot dot-blink"></span> KAPANMAK ÜZERE</span>`;
             } else if (saat >= 7 && saat < 18) {
                 container.innerHTML = `<span class="status-badge open"><span class="dot dot-blink"></span> ŞİMDİ AÇIK</span>`;
             } else {
@@ -885,24 +1378,104 @@
             }
         }
         updateStatus();
+        setInterval(updateStatus, 60000);
+
+        // --- GERİ SAYIM (Modal) ---
+        let countdownTimer = null;
+        const GUN_ADLARI = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
+
+        function calcCountdown() {
+            const now = new Date();
+            const day = now.getDay();
+            const totalMin = now.getHours() * 60 + now.getMinutes();
+            const OPEN = 7 * 60;          // 07:00
+            const CLOSE = 18 * 60 + 30;   // 18:30
+            const isOpenDay = day !== 0;
+
+            // Şu an açık
+            if (isOpenDay && totalMin >= OPEN && totalMin < CLOSE) {
+                return { state: 'open', minutes: CLOSE - totalMin };
+            }
+
+            // Bugün henüz açılmamış (Pzt-Cmt, sabah erken)
+            if (isOpenDay && totalMin < OPEN) {
+                return { state: 'closed', minutes: OPEN - totalMin, dayLabel: 'Bugün' };
+            }
+
+            // Bugün kapandı veya Pazar - bir sonraki açık günü bul
+            let addDays = 1;
+            let nextDay = (day + 1) % 7;
+            while (nextDay === 0) { addDays++; nextDay = (nextDay + 1) % 7; }
+            const minsUntil = (addDays * 1440) - totalMin + OPEN;
+            const label = (addDays === 1) ? 'Yarın' : GUN_ADLARI[nextDay];
+            return { state: 'closed', minutes: minsUntil, dayLabel: label };
+        }
+
+        function formatMins(m) {
+            if (m < 60) return `${m} dakika`;
+            const h = Math.floor(m / 60);
+            const mm = m % 60;
+            if (h < 24) return mm > 0 ? `${h} sa ${mm} dk` : `${h} saat`;
+            const d = Math.floor(h / 24);
+            const hh = h % 24;
+            return hh > 0 ? `${d} gün ${hh} sa` : `${d} gün`;
+        }
+
+        function renderCountdown() {
+            const info = calcCountdown();
+            const labelEl = document.getElementById('countdown-label');
+            const valueEl = document.getElementById('countdown-value');
+            const iconEl = document.getElementById('countdown-icon');
+            const box = document.getElementById('countdown-box');
+            if (!labelEl || !valueEl) return;
+
+            if (info.state === 'open') {
+                iconEl.textContent = info.minutes <= 30 ? '⚠️' : '⏳';
+                labelEl.textContent = 'Kapanmasına';
+                labelEl.style.color = info.minutes <= 30 ? '#e67e22' : 'var(--primary)';
+                valueEl.textContent = `${formatMins(info.minutes)} kaldı`;
+                box.style.background = info.minutes <= 30
+                    ? 'linear-gradient(135deg, rgba(243,156,18,0.12), rgba(241,196,15,0.18))'
+                    : 'linear-gradient(135deg, rgba(39,174,96,0.10), rgba(46,204,113,0.14))';
+                box.style.borderColor = info.minutes <= 30 ? 'rgba(243,156,18,0.35)' : 'rgba(39,174,96,0.30)';
+            } else {
+                iconEl.textContent = '🌙';
+                labelEl.textContent = `${info.dayLabel} açılıyor`;
+                labelEl.style.color = 'var(--primary)';
+                valueEl.textContent = `${formatMins(info.minutes)} sonra`;
+                box.style.background = 'linear-gradient(135deg, rgba(211,84,0,0.08), rgba(230,126,34,0.12))';
+                box.style.borderColor = 'rgba(211,84,0,0.25)';
+            }
+        }
+
+        function startCountdown() {
+            renderCountdown();
+            clearInterval(countdownTimer);
+            countdownTimer = setInterval(renderCountdown, 30000);
+        }
+
+        function stopCountdown() {
+            clearInterval(countdownTimer);
+            countdownTimer = null;
+        }
 
         // --- VERİLER ---
         const data = {
             tostlar: {
                 title: "Tostlar",
-                img: "https://i.postimg.cc/05X7B2qV/Screenshot-2026-03-01-18-23-44-499-com-miui-gallery-edit.jpg",
+                img: "images/tost/tamkav.webp",
                 items: [
-                    { ad: "Yarım Kavurmalı Kaşarlı (Meşhur)", fiyat: "240₺", img: "images/yarkav.webp" },
-                    { ad: "3 Çeyrek Kavurmalı Kaşarlı (Meşhur)", fiyat: "300₺", img: "images/3ceyrekkav.webp" },
-                    { ad: "Tam Kavurmalı Kaşarlı (Meşhur)", fiyat: "480₺", img: "images/tamkav.webp" },
-                    { ad: "Yarım Karışık Tost", fiyat: "160₺", img: "images/yarımkar.webp" },
-                    { ad: "3 Çeyrek Karışık Tost", fiyat: "230₺", img: "images/3ceyrekkar.webp" },
-                    { ad: "Tam Karışık Tost", fiyat: "320₺", img: "images/tamkar.webp" },
-                    { ad: "Yarım Tulum-Kaşar-Tereyağ", fiyat: "200₺", img: "images/yartul.jpg" },
-                    { ad: "Yarım Kaşarlı", fiyat: "130₺", img: "images/yarkas.jpg" },
-                    { ad: "Yarım Ustanın Tavsiyesi", fiyat: "280₺", img: "images/ustyar.jpeg" },
-                    { ad: "Ayvalık", fiyat: "240₺", img: "images/ayvalık.webp" },
-                    { ad: "👉 Domates / Biber / Salça", fiyat: "Ücretsiz", img: "images/domates.webp" },
+                    { ad: "Yarım Kavurmalı Kaşarlı (Meşhur)", fiyat: "240₺", img: "images/tost/yarkav.webp" },
+                    { ad: "3 Çeyrek Kavurmalı Kaşarlı (Meşhur)", fiyat: "300₺", img: "images/tost/3ceyrekkav.webp" },
+                    { ad: "Tam Kavurmalı Kaşarlı (Meşhur)", fiyat: "480₺", img: "images/tost/tamkav.webp" },
+                    { ad: "Yarım Karışık Tost", fiyat: "160₺", img: "images/tost/yarimkar.webp" },
+                    { ad: "3 Çeyrek Karışık Tost", fiyat: "230₺", img: "images/tost/3ceyrekkar.webp" },
+                    { ad: "Tam Karışık Tost", fiyat: "320₺", img: "images/tost/tamkar.webp" },
+                    { ad: "Yarım Tulum-Kaşar-Tereyağ", fiyat: "200₺", img: "images/tost/yartul.jpg" },
+                    { ad: "Yarım Kaşarlı", fiyat: "130₺", img: "images/tost/yarkas.jpg" },
+                    { ad: "Yarım Ustanın Tavsiyesi", fiyat: "280₺", img: "images/tost/ustyar.jpeg" },
+                    { ad: "Ayvalık", fiyat: "240₺", img: "images/tost/ayvalik.webp" },
+                    { ad: "👉 Domates / Biber / Salça", fiyat: "Ücretsiz", img: "images/tost/domates.webp" },
                 ]
             },
             icecekler: {
@@ -916,34 +1489,80 @@
             },
             sandevicler: {
                 title: "Sandviçler",
-                img: "images/san.webp",
+                img: "images/sandevic/san.webp",
                 items: [
-                    { ad: "Soğuk Sandviç karışık kavurmalı", fiyat: "300₺", img: "images/san.webp" },
-                    { ad: "Soğuk Sandviç karışık kavurmasız", fiyat: "240₺", img: "images/san.webp" },
-                    { ad: "Tatlı Sandviç", fiyat: "240₺", img: "images/tatsan.webp" },
+                    { ad: "Soğuk Sandviç karışık kavurmalı", fiyat: "300₺", img: "images/sandevic/san.webp" },
+                    { ad: "Soğuk Sandviç karışık kavurmasız", fiyat: "240₺", img: "images/sandevic/san.webp" },
+                    { ad: "Tatlı Sandviç", fiyat: "240₺", img: "images/tost/tatsan.webp" },
                 ]
             },
             pilavlar: {
                 title: "Pilavlar",
-                img: "images/plav.webp",
+                img: "images/pilav/plav.webp",
                 items: [
-                    { ad: "Büyük Tavuklu Pilav", fiyat: "150₺", img: "images/bpilavt.webp" },
-                    { ad: "Küçük Tavuklu Pilav", fiyat: "130₺", img: "" },
-                    { ad: "Büyük Pilav (tavuksuz)", fiyat: "120₺", img: "" },
-                    { ad: "Küçük Pilav (tavuksuz)", fiyat: "100₺", img: "" },
+                    { ad: "Büyük Tavuklu Pilav", fiyat: "150₺", img: "images/pilav/bpilavt.webp" },
+                    { ad: "Küçük Tavuklu Pilav", fiyat: "130₺", img: "images/pilav/plav.webp" },
+                    { ad: "Büyük Pilav (tavuksuz)", fiyat: "120₺", img: "images/pilav/plav.webp" },
+                    { ad: "Küçük Pilav (tavuksuz)", fiyat: "100₺", img: "images/pilav/plav.webp" },
                 ]
             },
             patatesler: {
                 title: "Patatesler",
-                img: "images/patates.webp",
+                img: "images/patates/patates.webp",
                 items: [
-                    { ad: "Patso", fiyat: "140₺", img: "images/patso.webp" },
-                    { ad: "Porsiyon", fiyat: "180₺", img: "images/1patates.webp" },
+                    { ad: "Patso", fiyat: "140₺", img: "images/patates/patso.webp" },
+                    { ad: "Porsiyon", fiyat: "180₺", img: "images/patates/1patates.webp" },
                 ]
             }
         };
 
+        // --- İÇİNDEKİLER ---
+        const ingredients = [
+            { ad: "Kavurma", desc: "Geleneksel dana kavurma", img: "images/i%C3%A7indekiler/kavurma.png" },
+            { ad: "Salam", desc: "Kaliteli dana salam", img: "images/i%C3%A7indekiler/salam.png" },
+            { ad: "Tereyağı", desc: "Saf doğal tereyağı", img: "images/i%C3%A7indekiler/tereyagi.png" },
+            { ad: "Krem Peynir", desc: "Yumuşak krem peynir", img: "images/i%C3%A7indekiler/krem.png" },
+            { ad: "Rus Salatası", desc: "Ev yapımı taze salata", img: "images/i%C3%A7indekiler/russalatas%C4%B1.png" },
+            { ad: "Çikolata", desc: "Tatlı sandviç için", img: "images/i%C3%A7indekiler/cikolata.png" }
+        ];
+
+        function renderIngredients() {
+            const grid = document.getElementById('ing-grid');
+            grid.innerHTML = ingredients.map(it => `
+                <div class="ing-card" onclick="openImage('${it.img}')">
+                    <div class="ing-img-wrap">
+                        <img src="${it.img}" alt="${it.ad}" loading="lazy">
+                    </div>
+                    <p class="ing-name">${it.ad}</p>
+                    <p class="ing-desc">${it.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function showIngredients() {
+            document.getElementById('main-view').style.display = 'none';
+            document.getElementById('details-view').style.display = 'none';
+            const v = document.getElementById('ingredients-view');
+            v.style.display = 'block';
+            v.classList.remove('animate');
+            void v.offsetWidth;
+            v.classList.add('animate');
+            document.querySelector('footer').style.display = 'none';
+            renderIngredients();
+            window.scrollTo(0, 0);
+        }
+
+        function hideIngredients() {
+            document.getElementById('ingredients-view').style.display = 'none';
+            document.getElementById('main-view').style.display = 'block';
+            document.querySelector('footer').style.display = '';
+            window.scrollTo(0, 0);
+        }
+
         // --- KATEGORİ GÖSTERİMİ ---
+        let currentCat = null;
+        let currentFilter = 'all';
+
         function showCategory(key) {
             const cat = data[key];
             if (!cat) return;
@@ -952,27 +1571,74 @@
             const det = document.getElementById('details-view');
             det.style.display = 'block';
             det.classList.add('animate');
+            const fab = document.getElementById('ing-fab-wrap');
+            if (fab) fab.style.display = 'none';
 
             // Varsayılan görsel kontrolü
-            const bannerUrl = cat.img ? cat.img : 'https://via.placeholder.com/600x400?text=Görsel+Bulunamadı';
+            const bannerUrl = cat.img;
             document.getElementById('cat-img').style.backgroundImage = `url('${bannerUrl}')`;
             document.getElementById('cat-title').innerText = cat.title;
 
-            const list = document.getElementById('items-list');
-            list.innerHTML = "";
+            currentCat = cat;
+            currentFilter = 'all';
+            document.getElementById('search-input').value = '';
+            document.querySelectorAll('#filter-chips .chip').forEach(c => {
+                c.classList.toggle('active', c.dataset.filter === 'all');
+            });
 
-            cat.items.forEach(i => {
-                const safeImg = i.img ? i.img : bannerUrl; // Resim yoksa kategorinin resmini kullan
-                list.innerHTML += `
+            // Filtre barı sadece tostlar kategorisinde görünür
+            document.getElementById('filter-bar').style.display = (key === 'tostlar') ? 'flex' : 'none';
+
+            renderItems();
+            window.scrollTo(0, 0);
+        }
+
+        function parsePrice(str) {
+            const n = parseInt(String(str).replace(/[^0-9]/g, ''), 10);
+            return isNaN(n) ? null : n;
+        }
+
+        function renderItems() {
+            if (!currentCat) return;
+            const list = document.getElementById('items-list');
+            const q = (document.getElementById('search-input').value || '').toLowerCase().trim();
+            const bannerUrl = currentCat.img;
+
+            const filtered = currentCat.items.filter(i => {
+                if (q && !i.ad.toLowerCase().includes(q)) return false;
+                const p = parsePrice(i.fiyat);
+                if (currentFilter === 'lt150') return p !== null && p <= 150;
+                if (currentFilter === '150-300') return p !== null && p > 150 && p <= 300;
+                if (currentFilter === 'gt300') return p !== null && p > 300;
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                list.innerHTML = `<div class="empty-state"><i class="fa-regular fa-face-frown" style="font-size:1.5rem; margin-bottom:8px; display:block;"></i>Sonuç bulunamadı</div>`;
+                return;
+            }
+
+            list.innerHTML = filtered.map(i => {
+                const safeImg = i.img ? i.img : bannerUrl;
+                return `
                 <div class="menu-item" onclick="changeHeaderImg('${safeImg}')">
                     <div class="item-info">
                         <span class="item-name">${i.ad}</span>
                     </div>
                     <span class="item-price">${i.fiyat}</span>
                 </div>`;
-            });
+            }).join('');
+        }
 
-            window.scrollTo(0, 0);
+        function setFilter(btn) {
+            currentFilter = btn.dataset.filter;
+            document.querySelectorAll('#filter-chips .chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            renderItems();
+        }
+
+        function applyFilter() {
+            renderItems();
         }
 
         function changeHeaderImg(url) {
@@ -984,6 +1650,8 @@
         function showMain() {
             document.getElementById('main-view').style.display = 'block';
             document.getElementById('details-view').style.display = 'none';
+            const fab = document.getElementById('ing-fab-wrap');
+            if (fab) fab.style.display = '';
             window.scrollTo(0, 0);
         }
 
